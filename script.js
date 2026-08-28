@@ -1,15 +1,13 @@
 document.getElementById('downloadBtn').addEventListener('click', function() {
-    // Укажите точное имя вашего exe файла, который будет лежать в папке assets
-    const exePath = './assets/Установка_Новеллы.exe'; 
+    // Используем строго латиницу для стабильного скачивания в любом браузере
+    const exePath = './assets/novell_setup.exe'; 
     
-    // Создаем виртуальную ссылку для скачивания файла
     const link = document.createElement('a');
     link.href = exePath;
     
-    // Имя файла, под которым он сохранится у пользователя
-    link.download = 'Установка_Новеллы'; 
+    // Имя, под которым файл гарантированно сохранится у пользователя
+    link.download = 'Setup_Novell.exe'; 
     
-    // Добавляем в документ, имитируем клик и удаляем
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
