@@ -4,8 +4,17 @@
         "title": "Новелла",
         "subtitle": "Увлекательная визуальная новелла с захватывающим сюжетом.",
         "icon": "🚀",
-        "version": "v1.0.0",
+        "version": "v1.0",
         "platform": "Windows x64",
         "file_name": "Setup_Novell.exe"
+    }
+    {
+        "id": "dog",
+        "title": "Коржик",
+        "subtitle": "Милый декстоп помощник по имени Коржик.",
+        "icon": "🐶",
+        "version": "v1.0",
+        "platform": "Windows x64",
+        "file_name": "Korzhik.exe"
     }
 ]
