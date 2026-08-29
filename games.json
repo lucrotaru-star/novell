@@ -1,6 +1,7 @@
 [
     {
         "id": "novell",
+        "type": "app",
         "title": "Новелла",
         "subtitle": "Увлекательная визуальная новелла с захватывающим сюжетом.",
         "icon": "🚀",
@@ -10,11 +11,42 @@
     },
     {
         "id": "dog",
+        "type": "app",
         "title": "Коржик",
-        "subtitle": "Милый декстоп помощник по имени Коржик.",
+        "subtitle": "Милый десктоп помощник по имени Коржик.",
         "icon": "🐶",
         "version": "v1.0",
         "platform": "Windows x64",
         "file_name": "Korzhik.exe"
+    },
+    {
+        "id": "slovo",
+        "type": "site",
+        "title": "Лишнее слово",
+        "subtitle": "Найди лишнее слово которое не совпадает с остальными",
+        "icon": "👁️‍🗨️",
+        "version": "4.0",
+        "platform": "Любой браузер",
+        "url": "https://word-spot-dash.base44.app"
+    },
+    {
+        "id": "miths",
+        "type": "site",
+        "title": "Библиотека мифов",
+        "subtitle": "Библиотека где таится много мифов ОСТОРОЖНО",
+        "icon": "📚",
+        "version": "2.0",
+        "platform": "Любой браузер",
+        "url": "https://lucrotaru-star.github.io/Miths"
+    },
+    {
+        "id": "arcade",
+        "type": "site",
+        "title": "Аркада",
+        "subtitle": "Собери монеты и огурцы избегай бомб",
+        "icon": "👾",
+        "version": "2.0",
+        "platform": "Любой браузер",
+        "url": "https://lucrotaru-star.github.io/Arcade-Game"
     }
 ]

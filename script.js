@@ -1,59 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('gamesContainer');
 
-    // Загружаем список игр из JSON-файла
     fetch('./games.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Не удалось загрузить список игр');
+                throw new Error('Не удалось загрузить список проектов');
             }
             return response.json();
         })
-        .then(games => {
-            // Перебираем каждую игру из списка и создаем для нее плитку
-            games.forEach(game => {
+        .then(projects => {
+            projects.forEach(project => {
                 const card = document.createElement('div');
                 card.className = 'card-container';
+
+                // Меняем только текст и иконку внутри кнопки, стиль не трогаем
+                const isSite = project.type === 'site';
+                const buttonText = isSite ? 'Открыть' : 'Скачать (.exe)';
+                const buttonIcon = isSite ? '🔗' : '📥';
 
                 card.innerHTML = `
                     <div>
                         <div class="logo-area">
-                            <div class="app-icon">${game.icon}</div>
+                            <div class="app-icon">${project.icon}</div>
                         </div>
-                        <h1 class="title">${game.title}</h1>
-                        <p class="subtitle">${game.subtitle}</p>
+                        <h1 class="title">${project.title}</h1>
+                        <p class="subtitle">${project.subtitle}</p>
                         <div class="meta-info">
-                            <span class="badge">${game.version}</span>
-                            <span class="badge">${game.platform}</span>
+                            <span class="badge">${project.version}</span>
+                            <span class="badge">${project.platform}</span>
                         </div>
                     </div>
-                    <button class="download-button" data-file="${game.file_name}">
-                        <span class="icon">📥</span>
-                        <span class="text">Скачать (.exe)</span>
+                    <button class="download-button">
+                        <span class="icon">${buttonIcon}</span>
+                        <span class="text">${buttonText}</span>
                     </button>
                 `;
 
-                // Навешиваем событие скачивания на кнопку именно этой плитки
-                const downloadBtn = card.querySelector('.download-button');
-                downloadBtn.addEventListener('click', (e) => {
-                    const fileName = e.currentTarget.getAttribute('data-file');
-                    const exePath = `./assets/${fileName}`;
-
-                    const link = document.createElement('a');
-                    link.href = exePath;
-                    link.download = fileName;
-
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                // Настраиваем действие при клике
+                const actionBtn = card.querySelector('.download-button');
+                actionBtn.addEventListener('click', () => {
+                    if (project.type === 'site') {
+                        // Если сайт — открываем ссылку в новой вкладке
+                        window.open(project.url, '_blank', 'noopener,noreferrer');
+                    } else {
+                        // Если программа — скачиваем файл из assets
+                        const exePath = `./assets/${project.file_name}`;
+                        const link = document.createElement('a');
+                        link.href = exePath;
+                        link.download = project.file_name;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
                 });
 
-                // Добавляем готовую плитку на страницу
                 container.appendChild(card);
             });
         })
         .catch(error => {
             console.error('Ошибка:', error);
-            container.innerHTML = `<p style="color: #ff7b72; font-size: 18px;">Ошибка загрузки каталога игр.</p>`;
+            container.innerHTML = `<p style="color: #ff7b72; font-size: 18px;">Ошибка загрузки каталога.</p>`;
         });
 });
